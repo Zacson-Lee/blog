@@ -107,3 +107,13 @@ feed:
   content_limit: 140
   content_limit_delim: ' '
   order_by: -date
+
+# emoji表情
+githubEmojis:
+  enable: true
+  className: github-emoji
+  inject: true
+  styles:
+    # font-size: 2em
+    # font-weight: bold
+  customEmojis:
