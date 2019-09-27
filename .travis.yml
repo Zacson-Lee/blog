@@ -27,6 +27,6 @@ after_script:
 
 notifications:
   email:
-    - ${USER_NAME}
+    - ${USER_EMAIL}
   on_success: always
   on_failure: always
