@@ -1,26 +1,32 @@
 language: node_js
-node_js: stable
-
-install:
-  - npm install hexo
-
-script:
-  - hexo clean
-  - hexo g
-
-after_script:
-  - cd ./public
-  - git init
-  - git config user.name "Zacson"
-  - git config user.email "zacson.me@gmail.com"
-  - git add .
-  - git commit -a -m "Auto update docs by Travis CI."
-  - git push --force --quiet "https://${ACCESS_TOKEN}@${GH_REF}" master:master
+# Node.js 版本，Node 11.0.0 版本 yarn install 会报错不支持 
+node_js: 10.10.0
 
 branches:
   only:
     - hexo
 
-env:
- global:
-   - GH_REF: github.com/Zacson-Lee/blog.git
+before_install: 
+  - export TZ='Asia/Shanghai'
+  - git config --global user.name ${USER_NAME}
+  - git config --global user.email ${USER_EMAIL}
+ 
+install:
+  - npm install hexo
+
+script:
+  - hexo clean
+  - hexo generate
+
+after_script:
+  - cd ./public
+  - git init
+  - git add .
+  - git commit -a -m "Travis CI Auto Builder at `date +"%Y-%m-%d %H:%M:%S"`."
+  - git push --force --quiet "https://${ACCESS_TOKEN}@${GH_REF}" master:master
+
+notifications:
+  email:
+    - ${USER_NAME}
+  on_success: always
+  on_failure: always
