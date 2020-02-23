@@ -269,7 +269,7 @@ postCalendar: true
 gitalk:
   enable: true
   owner: Zacson-Lee
-  repo: Zacson-Lee/blog
+  repo: blog
   oauth:
     clientId: 967d4c461eccd48a25df
     clientSecret: 8b3d0ba046e6e7e55f574bd43048353acfb8568d
