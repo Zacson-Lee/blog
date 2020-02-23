@@ -12,6 +12,7 @@ before_install:
   - git config --global user.email ${USER_EMAIL}
 
 install:
+  - npm install --dependencies
   - npm install hexo
 
 script:
