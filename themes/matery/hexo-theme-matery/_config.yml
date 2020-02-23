@@ -72,7 +72,7 @@ dream:
 # Whether to display the musics.
 # 是否在首页显示音乐.
 music:
-  enable: true
+  enable: false
   showTitle: true
   title: 听听音乐
   fixed: false # 开启吸底模式
@@ -269,7 +269,7 @@ postCalendar: true
 gitalk:
   enable: true
   owner: Zacson-Lee
-  repo: Zacson-Lee.github.io
+  repo: Zacson-Lee/blog
   oauth:
     clientId: 967d4c461eccd48a25df
     clientSecret: 8b3d0ba046e6e7e55f574bd43048353acfb8568d
