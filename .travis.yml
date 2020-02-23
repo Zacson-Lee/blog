@@ -1,16 +1,16 @@
 language: node_js
-# Node.js 版本，Node 11.0.0 版本 yarn install 会报错不支持 
+# Node.js 版本，Node 11.0.0 版本 yarn install 会报错不支持
 node_js: 10.10.0
 
 branches:
   only:
-    - hexo
+    - features
 
-before_install: 
+before_install:
   - export TZ='Asia/Shanghai'
   - git config --global user.name ${USER_NAME}
   - git config --global user.email ${USER_EMAIL}
- 
+
 install:
   - npm install hexo
 

@@ -2,24 +2,92 @@
     <div class="col s10 offset-s1 m8 offset-m2 l8 offset-l2">
         <div class="brand">
             <div class="title center-align">
-                <% if (config.subtitle && config.subtitle.length > 0) { %>
-                    <%= config.subtitle %>
+                <% if (is_archive()) { %>
+                    <%= __('archives') %>
+                <% } else if (page.title && page.title.length > 0) { %>
+                    <%= __(page.title) %>
                 <% } else { %>
-                    subtitle
+                    <%= config.subtitle%>
+                <% } %>
+
+                <!-- <% if (config.subtitle && config.subtitle.length > 0) { %>
+                <%= config.subtitle %>
+                <% } else { %>
+                subtitle
+                <% } %> -->
+            </div>
+
+            <!-- <div class="description center-align">
+                <% if (config.description && config.description.length > 0) { %>
+                    <script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
+                    <%- '<span id="jinrishici-sentence">正在加载今日诗词...</span>' %>
+                <% } else { %>
+                    <%= config.description %>
+                <% } %>
+            </div> -->
+
+            <div class="description center-align">
+                <span id="subtitle"></span>
+                <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11"></script>
+                <% if (theme.subtitle.enable && is_home()) { %>
+                    <script>
+                        var typed = new Typed("#subtitle", {
+                            strings: ['<%= theme.subtitle.sub1 %>','<%= theme.subtitle.sub2 %>'],
+                            startDelay: <%= theme.subtitle.startDelay %>,
+                            typeSpeed: <%= theme.subtitle.typeSpeed %>,
+                            loop: <%= theme.subtitle.loop %>,
+                            backSpeed: <%= theme.subtitle.backSpeed %>,
+                            showCursor: <%= theme.subtitle.showCursor %>
+                        });
+                    </script>
+                <% } else { %>
+                    <script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
+                    <script>
+                        jinrishici.load(function(result) {
+                            var content = result.data.content;
+                            // console.log(result);
+                            var typed = new Typed("#subtitle", {
+                                strings: [content],
+                                startDelay: <%= theme.subtitle.startDelay %>,
+                                typeSpeed: <%= theme.subtitle.typeSpeed %>,
+                                loop: <%= theme.subtitle.loop %>,
+                                backSpeed: <%= theme.subtitle.backSpeed %>,
+                                showCursor: <%= theme.subtitle.showCursor %>
+                            });
+                        });
+                    </script>
                 <% } %>
             </div>
 
-            <div class="description center-align">
-                <% if (config.description && config.description.length > 0) { %>
-                    <%= config.description %>
+            <!-- <div class="description center-align">
+                <% if (theme.subtitle.enable) { %>
+                <span id="subtitle"></span>
+                <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11"></script>
+                <script>
+                    var typed = new Typed("#subtitle", {
+                        strings: ['<%= theme.subtitle.sub1 %>','<%= theme.subtitle.sub2 %>'],
+                        startDelay: <%= theme.subtitle.startDelay %>,
+                        typeSpeed: <%= theme.subtitle.typeSpeed %>,
+                        loop: <%= theme.subtitle.loop %>,
+                        backSpeed: <%= theme.subtitle.backSpeed %>,
+                        showCursor: <%= theme.subtitle.showCursor %>
+                    });
+                </script>
                 <% } else { %>
-                    This is your root _config.yml 'description' value.
+                <%= config.description %>
                 <% } %>
-            </div>
+            </div> -->
         </div>
     </div>
 </div>
+
+<% if (theme.banner.enable) { %>
 <script>
-// 每天切换 banner 图.  Switch banner image every day.
-$('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay() + '.jpg)');
+    // 每天切换 banner 图.  Switch banner image every day.
+    $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay() + '.jpg)');
 </script>
+<% } else { %>
+<script>
+    $('.bg-cover').css('background-image', 'url(/medias/banner/0.jpg)');
+</script>
+<% } %>
